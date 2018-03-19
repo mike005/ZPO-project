@@ -30,3 +30,9 @@
 *.exe
 *.out
 *.app
+/zpo-project/.qmake.stash
+/zpo-project/debug/moc_mainwindow.cpp
+/zpo-project/debug/moc_predefs.h
+/zpo-project/Makefile
+/zpo-project/Makefile.Debug
+/zpo-project/Makefile.Release
