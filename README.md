@@ -1,1 +1,1 @@
-# ZPO-project
+# ZPO-projectProjekt do předmětu ZPO 2017/2018 - Program pro zobrazování vlastností obrazu##ZadáníJedná se o vypracování programu, který je schopen zobrazit různé údaje o načteném obrazu, jako hodnota pixelu pod myším kursorem (B/W nebo RGB s čísly), jasový řez obrazu v místě kursoru apod. Prosím, modifikujte podle svých schopností a zálib. Výsledkem by měl být program s popisem funkcí.
