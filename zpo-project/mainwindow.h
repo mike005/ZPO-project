@@ -7,6 +7,8 @@
 #include <QGraphicsScene>
 #include <QLabel>
 #include <QPixmap>
+#include <QFile>
+#include <QMessageBox>
 
 #include <opencv2/core/core.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
@@ -32,8 +34,17 @@ public:
 
 private:
     Ui::MainWindow *ui;
+    QAction *openAct;
 
-    QImage defaultImg;
+    QImage *defaultImg;
+
+public slots:
+
+    void openFile();
+
+private slots:
+    void on_actionOpen_triggered();
+    void on_actionAbout_triggered();
 };
 
 #endif // MAINWINDOW_H

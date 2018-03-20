@@ -36,3 +36,6 @@ FORMS += \
 INCLUDEPATH += C:\opencv\build\include
 
 LIBS += -L "C:\opencv\build\x64\vc14\lib"
+
+RESOURCES += \
+    resources.qrc

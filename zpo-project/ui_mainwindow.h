@@ -20,7 +20,9 @@
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
+#include <QtWidgets/QPlainTextEdit>
 #include <QtWidgets/QStatusBar>
+#include <QtWidgets/QTextEdit>
 #include <QtWidgets/QToolBox>
 #include <QtWidgets/QWidget>
 
@@ -31,13 +33,23 @@ class Ui_MainWindow
 public:
     QAction *actionOpen;
     QAction *actionAbout;
+    QAction *actionSave;
     QWidget *centralwidget;
     QFrame *displayFrame;
     QLabel *displayLabel;
     QFrame *infoFrame;
     QToolBox *infoToolBox;
-    QWidget *Picture;
-    QWidget *Pixel;
+    QWidget *toolboxPixel;
+    QLabel *widthLabel;
+    QLabel *hightLabel;
+    QPlainTextEdit *plainTextEdit;
+    QPlainTextEdit *plainTextEdit_2;
+    QWidget *toolboxImage;
+    QLabel *label;
+    QLabel *label_2;
+    QLabel *label_3;
+    QTextEdit *textEdit;
+    QTextEdit *textEdit_2;
     QMenuBar *menubar;
     QMenu *menuFile;
     QMenu *menuHelp;
@@ -53,17 +65,26 @@ public:
         actionOpen->setObjectName(QStringLiteral("actionOpen"));
         actionAbout = new QAction(MainWindow);
         actionAbout->setObjectName(QStringLiteral("actionAbout"));
+        actionSave = new QAction(MainWindow);
+        actionSave->setObjectName(QStringLiteral("actionSave"));
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QStringLiteral("centralwidget"));
+        centralwidget->setStyleSheet(QStringLiteral("background-color: rgb(57, 57, 57);"));
         displayFrame = new QFrame(centralwidget);
         displayFrame->setObjectName(QStringLiteral("displayFrame"));
         displayFrame->setGeometry(QRect(0, 0, 511, 461));
+        displayFrame->setMinimumSize(QSize(0, 0));
         displayFrame->setAutoFillBackground(false);
         displayFrame->setFrameShape(QFrame::StyledPanel);
         displayFrame->setFrameShadow(QFrame::Raised);
         displayLabel = new QLabel(displayFrame);
         displayLabel->setObjectName(QStringLiteral("displayLabel"));
         displayLabel->setGeometry(QRect(16, 12, 481, 451));
+        displayLabel->setCursor(QCursor(Qt::CrossCursor));
+        displayLabel->setScaledContents(false);
+        displayLabel->setAlignment(Qt::AlignCenter);
+        displayLabel->setWordWrap(false);
+        displayLabel->setOpenExternalLinks(false);
         infoFrame = new QFrame(centralwidget);
         infoFrame->setObjectName(QStringLiteral("infoFrame"));
         infoFrame->setGeometry(QRect(500, 0, 281, 461));
@@ -73,14 +94,41 @@ public:
         infoToolBox->setObjectName(QStringLiteral("infoToolBox"));
         infoToolBox->setGeometry(QRect(10, 10, 261, 451));
         infoToolBox->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
-        Picture = new QWidget();
-        Picture->setObjectName(QStringLiteral("Picture"));
-        Picture->setStyleSheet(QStringLiteral("color: rgb(0, 0, 0);"));
-        infoToolBox->addItem(Picture, QStringLiteral(""));
-        Pixel = new QWidget();
-        Pixel->setObjectName(QStringLiteral("Pixel"));
-        Pixel->setStyleSheet(QStringLiteral("color: rgb(0, 0, 0);"));
-        infoToolBox->addItem(Pixel, QStringLiteral("Page"));
+        toolboxPixel = new QWidget();
+        toolboxPixel->setObjectName(QStringLiteral("toolboxPixel"));
+        toolboxPixel->setStyleSheet(QStringLiteral("color: rgb(0, 0, 0);"));
+        widthLabel = new QLabel(toolboxPixel);
+        widthLabel->setObjectName(QStringLiteral("widthLabel"));
+        widthLabel->setGeometry(QRect(40, 20, 47, 21));
+        hightLabel = new QLabel(toolboxPixel);
+        hightLabel->setObjectName(QStringLiteral("hightLabel"));
+        hightLabel->setGeometry(QRect(40, 60, 47, 21));
+        plainTextEdit = new QPlainTextEdit(toolboxPixel);
+        plainTextEdit->setObjectName(QStringLiteral("plainTextEdit"));
+        plainTextEdit->setGeometry(QRect(100, 10, 104, 31));
+        plainTextEdit_2 = new QPlainTextEdit(toolboxPixel);
+        plainTextEdit_2->setObjectName(QStringLiteral("plainTextEdit_2"));
+        plainTextEdit_2->setGeometry(QRect(100, 60, 104, 31));
+        infoToolBox->addItem(toolboxPixel, QStringLiteral("Page"));
+        toolboxImage = new QWidget();
+        toolboxImage->setObjectName(QStringLiteral("toolboxImage"));
+        label = new QLabel(toolboxImage);
+        label->setObjectName(QStringLiteral("label"));
+        label->setGeometry(QRect(100, 0, 61, 21));
+        label->setStyleSheet(QStringLiteral("font: 75 12pt \"MS Shell Dlg 2\";"));
+        label_2 = new QLabel(toolboxImage);
+        label_2->setObjectName(QStringLiteral("label_2"));
+        label_2->setGeometry(QRect(20, 50, 47, 13));
+        label_3 = new QLabel(toolboxImage);
+        label_3->setObjectName(QStringLiteral("label_3"));
+        label_3->setGeometry(QRect(20, 90, 47, 13));
+        textEdit = new QTextEdit(toolboxImage);
+        textEdit->setObjectName(QStringLiteral("textEdit"));
+        textEdit->setGeometry(QRect(90, 40, 104, 31));
+        textEdit_2 = new QTextEdit(toolboxImage);
+        textEdit_2->setObjectName(QStringLiteral("textEdit_2"));
+        textEdit_2->setGeometry(QRect(90, 80, 104, 31));
+        infoToolBox->addItem(toolboxImage, QStringLiteral("Page"));
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QStringLiteral("menubar"));
@@ -99,6 +147,7 @@ public:
         menubar->addAction(menuFile->menuAction());
         menubar->addAction(menuHelp->menuAction());
         menuFile->addAction(actionOpen);
+        menuFile->addAction(actionSave);
         menuHelp->addAction(actionAbout);
 
         retranslateUi(MainWindow);
@@ -114,9 +163,15 @@ public:
         actionOpen->setToolTip(QApplication::translate("MainWindow", "Open file", nullptr));
 #endif // QT_NO_TOOLTIP
         actionAbout->setText(QApplication::translate("MainWindow", "About", nullptr));
+        actionSave->setText(QApplication::translate("MainWindow", "Save", nullptr));
         displayLabel->setText(QString());
-        infoToolBox->setItemText(infoToolBox->indexOf(Picture), QString());
-        infoToolBox->setItemText(infoToolBox->indexOf(Pixel), QApplication::translate("MainWindow", "Page", nullptr));
+        widthLabel->setText(QApplication::translate("MainWindow", "Width:", nullptr));
+        hightLabel->setText(QApplication::translate("MainWindow", "Hight:", nullptr));
+        infoToolBox->setItemText(infoToolBox->indexOf(toolboxPixel), QApplication::translate("MainWindow", "Page", nullptr));
+        label->setText(QApplication::translate("MainWindow", "Color", nullptr));
+        label_2->setText(QApplication::translate("MainWindow", "RGB: ", nullptr));
+        label_3->setText(QApplication::translate("MainWindow", "#", nullptr));
+        infoToolBox->setItemText(infoToolBox->indexOf(toolboxImage), QApplication::translate("MainWindow", "Page", nullptr));
         menuFile->setTitle(QApplication::translate("MainWindow", "File", nullptr));
         menuHelp->setTitle(QApplication::translate("MainWindow", "Help", nullptr));
     } // retranslateUi
