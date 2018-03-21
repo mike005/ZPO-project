@@ -3,12 +3,21 @@
 
 #include <QMainWindow>
 #include <QPushButton>
-#include <QtWidgets>
+#include <QWidget>
 #include <QGraphicsScene>
 #include <QLabel>
 #include <QPixmap>
 #include <QFile>
 #include <QMessageBox>
+#include <QToolBox>
+#include <QFrame>
+#include <QVBoxLayout>
+#include <QListWidget>
+#include <QTextBrowser>
+#include <QGroupBox>
+#include <QComboBox>
+#include <QGridLayout>
+#include <QLineEdit>
 
 #include <opencv2/core/core.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
@@ -37,10 +46,20 @@ private:
     QAction *openAct;
 
     QImage *defaultImg;
+    QToolBox *toolBox;
+    QLineEdit *iWidthLineEdit;
+    QLineEdit *iHeightLineEdit2;
+    QLineEdit *horizontalLineEdit;
+    QLineEdit *verticalLineEdit;
+    QLineEdit *rgbLineEdit;
+    QLineEdit *hexLineEdit;
 
-public slots:
+    QLineEdit *stat1LineEdit;
+    QLineEdit *stat2LineEdit;
 
-    void openFile();
+    QWidget *wImage;
+    QWidget *wPixel;
+
 
 private slots:
     void on_actionOpen_triggered();
