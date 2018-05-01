@@ -186,22 +186,23 @@ MainWindow::~MainWindow()
  */
 void MainWindow::on_actionOpen_triggered()
 {
-    /* QString fileName = QFileDialog::getOpenFileName(this,
-                                                     tr("Open Address Book"), "",
-                                                     tr("Address Book (*.abk);;All Files (*)"));
+    QString fileName = QFileDialog::getOpenFileName(this,
+                                                         tr("Open File"), "",
+                                                         tr("Picture (*.jpg);;All Files (*)"));
 
-     if (fileName.isEmpty())
+         if (fileName.isEmpty())
+                 return;
+
+         cv::Mat img = cv::imread(fileName.toStdString());
+
+
+         if( img.empty() ) {
+             QMessageBox::information(this, tr("Error"),"Unable to open file");
              return;
+         }
 
-     QFile file(fileName);
-
-     if (!file.open(QIODevice::ReadOnly)) {
-        QMessageBox::information(this, tr("Unable to open file"), file.errorString());
-        return;
-     }*/
-
-
-
+         cv::cvtColor(img, img, CV_BGR2RGB);
+         ui->displayLabel->setPixmap(QPixmap::fromImage(QImage(img.data, img.cols, img.rows, img.step, QImage::Format_RGB888)));
 }
 
 
